@@ -1,49 +1,45 @@
+%----------------------------------------------------------------------------------------
+% MODULE INFORMATION
+%----------------------------------------------------------------------------------------
 % Define the module top matter
-% This gets used to create the chapter title page
-% NOTES:
-%  * When multiple people have authored or contributed to the module, simply use a LaTeX line break
-%    (a double-backslash: \\) at the end of each person.
-%  * If you don't want this information shown on the module chapter page, simply remove the lines
-%    within the \setModuleAuthors{} and \setModuleContributions{} environments
+
 \setModuleTitle{Functional data analysis}
 \setModuleAuthors{%
-  Jane Bloggs \mailto{jane.bloggs@example.com} \\
-  Joe Bloggs \mailto(joe.bloggs@example.com)
+  Alex Mitchell, EBI Hinxton, UKs \mailto{mitchell@ebi.ac.uk} \\
 }
 \setModuleContributions{%
-  John Doe \mailto{john.dow@example.com}%
+  BPA-CSIRO Trainers %
 }
 
+%----------------------------------------------------------------------------------------
+% MODULE TITLE PAGE
+%----------------------------------------------------------------------------------------
 % BEGIN: Module Title Page
-% This simply uses the above information and creates a module chapter page
-% NOTES:
 %  * The chapter page will always appear on odd numbered page
 \chapter{\moduleTitle}
 \newpage
 % END: Module Title Page
 
+%----------------------------------------------------------------------------------------
+% LEARNING OUTCOMES
+%----------------------------------------------------------------------------------------
 
 % BEGIN: KLOs
-% Key Learning Outcomes (KLOs) are an important aspect of any learning/training. They provide
-% valuable infomation about what the trainee will have learned, what they will be able to do or know
-% abouti at the end of the module. Unlike objectives which are more trainer oriented, KOLs are
-% focused on the learner.
-% At the end of the module, the KLOs can be used to develop criteria for writing an assessment to
-% see if the trainees knowledge/skills have improved as a result of the module.
-% 
-% Search online for information on how to write KLOs. e.g.
-% http://www.teaching-learning.utas.edu.au/__data/assets/word_doc/0014/23333/Learning-outcomes-v9.1.doc
+% Key Learning Outcomes (KLOs) are an important aspect of any learning/training. 
+
 \section{Key Learning Outcomes}
 
 After completing this module the trainee should be able to:
 \begin{itemize}
-  \item Assess the overall quality of NGS sequence reads
-  \item Visualise the quality, and other associated matrices, of reads to decide
-        on filters and cutoffs for cleaning up data ready for downstream analysis
-  \item Clean up and pre-process the sequences data for further analysis
+  \item Understand how EMG provides functional analysis of metagenomic data sets
+  \item Know where to find and how to interpret analysis results for samples on the EMG website
+  \item Know how to download the raw sample data and analysis results for use with 3rd party visualisation and statistical analysis packages
 \end{itemize}
 % END KLOs
 
+%----------------------------------------------------------------------------------------
+% MODULE RESOURCES
+%----------------------------------------------------------------------------------------
 % BEGIN: Resources Used
 % This section can be used to describe the tools and data used during the module. It helps to act as
 % a future reference to the trainee
@@ -51,143 +47,330 @@ After completing this module the trainee should be able to:
  
 \subsection{Tools Used}
 \begin{description}[style=multiline,labelindent=0cm,align=left,leftmargin=0.5cm]
-  \item[FastQC]\hfill\\
-  	\url{http://www.bioinformatics.babraham.ac.uk/projects/fastqc/}
-  \item[FASTX-Toolkit]\hfill\\
-  	\url{http://hannonlab.cshl.edu/fastx_toolkit/}
-  \item[Picard]\hfill\\
-  	\url{http://picard.sourceforge.net/}
+  \item[STAMP]\hfill\\
+  	\url{http://kiwi.cs.dal.ca/Software/STAMP}
 \end{description}
 
 \section{Useful Links}
  
 \begin{description}[style=multiline,labelindent=0cm,align=left,leftmargin=0.5cm]
-  \item[FASTQ Encoding]\hfill\\
-    \url{http://en.wikipedia.org/wiki/FASTQ_format#Encoding}
+  \item[EBI Metagenomics resource (EMG)]\hfill\\
+    \url{www.ebi.ac.uk/metagenomics/}
 \end{description}
 
 \newpage
 % END: Resources Used
 
+%----------------------------------------------------------------------------------------
+% INTRODUCTION
+%----------------------------------------------------------------------------------------
 % BEGIN: Introduction
 \section{Introduction}
 
-% To make a paragraph appear as a "note" to the reader, simply wrap it in a "note" environment like
-% this:
 \begin{note}
-This is an important note to the reader. The paragraph get's it own margin icon and formatting to
-ensure it stands out.
+The EBI Metagenomics resource (EMG) provides functional analysis of predicted coding sequences (pCDS) from metagenomic data sets using the InterPro database. InterPro is a sequence analysis resource that predicts protein family membership, along with the presence of important domains and sites. It does this by combining predictive models known as protein signatures from a number of different databases into a single searchable resource. InterPro curators manually integrate the different signatures, providing names and descriptive abstracts and, whenever possible, adding Gene Ontology (GO) terms. Links are also provided to pathway databases, such as KEGG, MetaCyc and Reactome, and to structural resources, such as SCOP, CATH and PDB.
 \end{note}
+%-----------------------------------------------------------------------------------------
+\subsection{What are protein signatures?}
 
-There are 10 characters which have special meaning in \LaTeX and to have them displayed as literal
-characters we need to do something special. The first seven can simply be prepended by a backslash;
-for the other three, we must use the macros \verb+\textasciitilde+, \verb+\textasciicircum+,
-\verb+\textbackslash+.
-
-
-\& \% \$ \# \_ \{ \}
-
-\textasciitilde
-
-\textasciicircum
-
-\textbackslash
-
-Highly redundant coverage ($>$15X) of the genome can be used to correct sequencing
-errors in the reads before assembly and errors. Various k-mer based error
-correction methods exist but are beyond the scope of this tutorial.
-
-In order to use a single character to encode Phred qualities, ASCII characters
-are used (\url{http://shop.alterlinks.com/ascii-table/ascii-table-us.php}). All ASCII characters have a decimal
-number associated with them but the first 32 characters are non-printable (e.g.
-
-Because ASCII characters $<$ 33 are non-printable, using the Phred+33 encoding was
-not possible. Therefore, they simply moved the offset from 33 to 64 thus
-
-schema it is not always possible to identify what encoding is in use. For
-example, if the only characters seen in the quality string are (\texttt{@ABCDEFGHI}),
-then it is impossible to know if you have really good Phred+33 encoded qualities
-or really bad Phred+64 encoded qualities.
-
-\subsection{Tables}
-
-Writing tables in \LaTeX is HARD! Rather than write them from scratch, I'd head over to
-\url{http://www.tablesgenerator.com/latex_tables}, generate the table you want using the interactive
-page and copy the resulting \LaTeX into your source file.
-
-\begin{tabular}{llr}
-\hline
-\multicolumn{2}{c}{Item} \\
-\cline{1-2}
-Animal    & Description & Price (\$) \\
-\hline
-Gnat      & per gram    & 13.65      \\
-          & each        & 0.01       \\
-Gnu       & stuffed     & 92.50      \\
-Emu       & stuffed     & 33.33      \\
-Armadillo & frozen      & 8.99       \\
-\hline
-\end{tabular}
+Protein signatures are obtained by modelling the conservation of amino acids at specific positions within a group of related proteins (i.e., a protein family), or within the domains/sites shared by a group of proteins. InterPro’s different member databases use different computational methods to produce protein signatures, and they each have their own particular focus of interest: structural and/or functional domains, protein families, or protein features, such as active sites or binding sites (see Figure 1).
 
 \subsection{Figures}
 
-No handout is complete without figures, screenshots or similar.
-
-\begin{figure}[H]
+\begin{figure}[Figure 1]
 \centering
-\includegraphics[width=0.8\textwidth]{handout/bad_example.png}
-\caption{Per base sequence quality plot for \texttt{bad\_example.fastq}.}
-\label{fig:bad_example_untrimmed_plot}
+\includegraphics[width=0.8\textwidth]{handout/InterPro.png}
+\caption{InterPro member databases grouped by the methods, indicated in white coloured text, used to construct their signatures. Their focus of interest is shown in blue text.}
+\label{fig:InterPro}
 \end{figure}
 
-\subsection{Maths Environment}
+Only a subset of the InterPro member databases are used by EMG: Gene3D, TIGRFAMs, Pfam, PRINTS and PROSITE patterns. These databases were selected since, together, they provide both high coverage and offer detailed functional analysis, and have underlying algorithms that can cope with the vast amounts of fragmentary sequence data found in metagenomic datasets.
 
-I won't pretend to be an expert in \LaTeX but I do know that one of the strengths of \LaTeX is it's
-ability to allow mathematical formulas to be constructed and typeset very easily. Firstly, you have
-to tell \LaTeX what text is going to contain mathematical symbols.
+%-----------------------------------------------------------------------------------------
+\subsection{Assigning functional information to metagenomic sequences}
 
-For inline display, simply surround the relevant text by dollar signs: \verb+$Q(A) =-10 log10(P(\sim A))$+
+Whilst InterPro matches to metagenomic sequence sets are informative in their own right, EMG offers an additional type of analysis in the form of Gene Ontology (GO) terms.
+The Gene Ontology is made up of 3 structured controlled vocabularies that describe gene products in terms of their associated biological processes, cellular components and molecular functions in a species-independent manner. By using GO terms, scientists working on different species or using different databases can compare datasets, since they have a precisely defined name and meaning for a particular concept. Terms in the Gene Ontology are ordered into hierarchies, with less specific terms towards the top and more specific terms towards the bottom (see Figure 2).
 
-For more complex mathematical formulas which need to be displayed separately, use the
-\verb+\begin{displaymath} ... \end{displaymath}+ environment to wrap around your formulas.
+\begin{figure}[Figure 2]
+\centering
+\includegraphics[width=0.8\textwidth]{handout/GO.png}
+\caption{An example of GO terms organised into a hierarchy, with terms becoming less specific as the hierarchy is ascended (e.g., alpha-tubulin binding is a type of cytoskeletal binding, which is a type of protein binding). Note that a GO term can have more than one parent term. The Gene Ontology also allows for different types of relationships between terms (such as ‘has part of’ or ‘regulates’). The EMG analysis pipeline only uses the straightforward ‘is a’ relationships.}
+\label{fig:GO}
+\end{figure}
 
-\begin{displaymath}
-Q(A) =-10 log10(P(\sim A))
-\end{displaymath} 
+More information about the GO project can be found \url{http://www.geneontology.org/GO.doc.shtml}
 
+As part of the EMG analysis pipeline, GO terms for molecular function, biological process and cellular component are associated to pCDS in a sample via the InterPro2GO mapping service. This works as follows: InterPro entries are given GO terms by curators if the terms can be accurately applied to all of the proteins matching that entry. Sequences searched against InterPro are then associated with GO terms by virtue of the entries they match - a protein that matches one InterPro entry with the GO term ‘kinase activity’ and another InterPro entry with the GO term ‘zinc ion binding’ will be annotated with both GO terms.
 
-\subsection{Questions and Answers}
+%-----------------------------------------------------------------------------------------
+\subsection{Finding functional information about samples on the EMG website}
 
-It is useful to maintain the answers to questions together in the same \LaTeX source. By using the
-\verb+\begin{answer} ... \end{answer}+ environment we can have the enclosed answers excluded from
-the trainee's version of the handout while including it in the trainer's version of the handout.
+Functional analysis of samples within projects on the EMG website \url{www.ebi.ac.uk/metagenomics/} can be accessed by clicking on the Functional Analysis tab found toward the top of any sample page (see Figure 3 below).
 
-\begin{questions}
-We can ask a simply question to test if the trainee is understanding what they are doing. 
-\begin{answer}
-We can maintain the answer along side the questions.
-\end{answer}
+\begin{figure}[Figure 3]
+\centering
+\includegraphics[width=0.8\textwidth]{handout/FA.png}
+\caption{A Functional analysis tab can be found towards the top of each sample page}
+\label{fig:FA}
+\end{figure}
 
-\end{questions}
+Clicking on this tab brings up a page displaying sequence features (the number of reads with pCDS, the number of pCDS with InterPro matches, etc), InterPro match information and GO term annotation for the sample, as shown in Figure 4 and 5 below.
 
-\subsection{Code For Trainees to Copy/Type}
+Functional analysis of metagenomics data, as shown on the EMG website.
 
-Different people have different opinions on whether it is a good idea to provide the commands for
-trainees to copy-and-paste. In our experience, there is a huge amount of time wasted by novices
-typing commands incorrectly or changing filenames which affects commands you might run later on. We
-also think that it's a good idea to pose regular questions or ask the trainees to modify a previous
-command. This way you can catch out those whoe are just trying to get ahead by blindly
-copying-and-pasting.
+\begin{figure}[Figure 4]
+\centering
+\includegraphics[width=0.8\textwidth]{handout/FA_Interpro.png}
+\caption{ InterPro match information for the predicted coding sequences in the sample is shown. The number of InterPro matches are displayed graphically, and as a table that has a text search facility.}
+\label{fig:FA_Interpro}
+\end{figure}
 
-To provide a nicely formatted, copy-and-pastable command, simply wrap it in the
-\verb+\begin{lstlisting} ... \end{lstlisting}+ environment. Long commands will be wrapped
-automatically and bash line continuation characters (\textbackslash) inserted where required.
+\begin{figure}[Figure 5]
+\centering
+\includegraphics[width=0.8\textwidth]{handout/FA_GO.png}
+\caption{ The GO terms predicted for the sample are displayed. Different graphical representations are available, and can be selected by clicking on the ‘Switch view’ icons.}
+\label{fig:FA_GO}
+\end{figure}
+
+The Gene Ontology terms displayed graphically on the web site have been ‘slimmed’ with a special GO slim developed for metagenomic data sets. GO slims are cut-down versions of the Gene Ontology, containing a subset of the terms in the whole GO. They give a broad overview of the ontology content without the detail of the specific fine-grained terms.
+
+The full data sets used to generate both the InterPro and GO overview charts, along with a host of additional data (processed reads, pCDS, reads encoding 16S rRNAs, taxonomic analyses, etc) can be downloaded for further analysis by clicking the Download tab, found towards the top of the page (see Figure 6).
+
+\begin{figure}[Figure 6]
+\centering
+\includegraphics[width=0.8\textwidth]{handout/FA_DL.png}
+\caption{Each sample has a download tab, where the full set of sequences, analyses, summaries and raw data can be downloaded}
+\label{fig:FA_DL}
+\end{figure}
+
+%----------------------------------------------------------------------------------------
+% SEQUENZA PRE-PROCESSING
+%----------------------------------------------------------------------------------------
+%BEGIN: Practical
+\section{Practical}
+
+%-----------------------------------------------------------------------------------------
+\subsection{Part 1 – Browsing analysed data via the EMG website}
 
 \begin{steps}
+Open the Metagenomics Portal homepage in a web browser \url{https://www.ebi.ac.uk/metagenomics/}.
+
+From the Projects list click the ‘Projects’ tab, or ‘View all projects’, find and click on HOT station, Central North Pacific Gyre, ALOH.
+You should now have a Project overview page describing the project, related publications, and links to the samples that the project contains.
+\end{steps}
+
+\begin{questions}
+Question 1: What publications are associated with this study?
+\end{questions}
+
+\begin{steps}
+Scroll down to Associated Samples and open the HOT Station ALOHA, 25 m sample.
+You should now have a Sample Overview page, describing various meta-data associated with the sample, such as the geographic location from which it was isolated, its collection date, and so on.
+\end{steps}
+
+\begin{questions}
+Question 2: What is the latitude, longitude and depth at which the sample was collected?
+\end{questions}
+
+\begin{questions}
+Question 3: What geographic location does this correspond to?
+\end{questions}
+
+\begin{questions}
+Question 4: What environmental ontology (ENVO) identifer and name has the sample material been annotated with?
+\end{questions}
+
+\begin{steps}
+Click on the ‘Download’ tab. Right click the file labelled ‘Predicted CDS (FASTA)’ link, and save this file to your desktop. Find the file, and either double click on it to open it, or examine it using ‘less’ by typing the following commands in a terminal window:
 \begin{lstlisting}
-cd ~/QC
-fastx_clipper -h
-fastx_clipper -v -Q 33 -l 20 -M 15 -a GATCGGAAGAGCGGTTCAGCAGGAATGCCGAG -i bad_example.fastq -o bad_example_clipped.fastq
+cd ~/Desktop
+less HOT_Station_ALOHA,_25m_depth_pCDS.faa
 \end{lstlisting}
 \end{steps}
 
+Have a look at one or two of the many sequences it contains.
+We will look at the analysis results for this entire batch of sequences, displayed on the EMG website, in a moment. First, we will attempt analyse just one of the predicted coding sequences using InterPro (the analysis results on the EMG website summarise these kind of results for tens or hundreds of thousands of sequences).
+
+\begin{steps}
+In a new tab or window, open your web browser and navigate to \url{http://www.ebi.ac.uk/interpro/}. Copy and paste the following sequence into the text box on the InterPro home page where it says ‘Analyse your sequence’:
+\begin{lstlisting}
+>SRR010898.122503_1_115_+
+ENNQEIKIIRNYINEFNLTGFIVGIPLDEKGQMTNQAI
+\end{lstlisting}
+\end{steps}
+
+\begin{steps}
+Press Search and wait for your results. Your sequence will be run through the InterProScan analysis software, which attempts to match it against all of the different signatures in the InterProScan database.
+\end{steps}
+
+\begin{questions}
+Question 5: What feature does InterProScan predict your sequence to contain? \end{questions}
+
+\begin{information}
+Clicking on the InterPro entry name or IPR accession number will take you to the InterPro entry page for your result, where more information can be found.
+\end{information}
+
+\begin{questions}
+Question 6: What GO terms is the feature associated with?
+\end{questions}
+
+\begin{steps}
+Return to the sample page for HOT station, Central North Pacific Gyre, ALOH 25 m.
+\end{steps}
+
+Now we are going to look at the functional analysis results for all of the pCDS in the sample. First, we will find the number of sequences that made it through to the functional analysis section of the pipeline.
+
+\begin{steps}
+Click on the Quality control tab. This page displays a series of charts, showing how many sequences passed each quality control step, how many reads were left after clustering, and so on.
+\end{steps}
+
+\begin{questions}
+Question 7: After all of the quality filtering steps are complete, how many reads were submitted for analysis by the pipeline?
+\end{questions}
+
+Next, we will look at the results of the functional predictions for the pCDS. These can be found under the Functional analysis tab.
+
+\begin{steps}
+Click on the Functional analysis tab and examine the InterPro match section. The top part of this page shows a sequence feature summary, showing the number of reads with predicted coding sequences (pCDS), the number of pCDS with InterPro matches, etc.
+\end{steps}
+
+\begin{questions}
+Question 8: How many of the reads that passed the quality control stage had predicted coding sequences (pCDS)?
+
+Question 9: How many pCDS have InterProScan hits?
+\end{questions}
+
+\begin{steps}
+Scroll down the page to the InterPro match summary section
+\end{steps}
+
+\begin{questions}
+Question 10: How many different InterPro entries were matched by the pCDS?
+  
+Question 11: Why is this figure different to the number of pCDS that have InterProScan hits?
+\end{questions}
+
+Next we will examine the GO terms predicted by InterPro for the pCDS in the sample.
+
+\begin{steps}
+Scroll down to the GO term annotation section of the page and examine the 3 bar charts, which correspond to the 3 different components of the Gene Ontology.
+
+Question 12: What are the top 3 biological process terms predicted for the pCDS from the sample?
+
+Selecting the pie chart representation of GO terms makes it easier to visualise the data to find the answer.
+\end{steps}
+
+Now we will look at the taxonomic analysis for this sample. 
+
+\begin{steps}
+Click on the Taxonomy Analysis tab and examine the phylum composition graph and table. 
+
+Question 13: How many different OTUs were found in this sample?
+
+Question 14: What are the top 3 phyla in the sample?
+
+Select the Krona chart view of the data icon. This brings up an interactive chart that can be used to analyse data at different taxonomic ranks.
+
+Question 15: What proportion of cyanobacteria in this sample are made up of Synechococcaceae?
+\end{steps}
+
+Now we will compare these analyses with those for a sample taken at 500 m from the same geographical location.
+
+\begin{steps}
+In a new tab or window, find and open the HOT station, Central North Pacific Gyre, ALOH project page again. Select the sample HOT Station ALOHA, 500m and examine the information under the Functional analysis tabs.
+  Question 16: How many pCDS were in this sample?
+  Question 17: How many of the pCDSs have an InterPro match?
+  Question 18: How many different InterPro entries are matched by this sample?
+  Question 19: Are these figures broadly comparable to the ones for the 25 m sample?
+\end{steps}
+
+\begin{steps}
+Scroll to the bottom of the page and examine the GO term annotation for the day 500 m sample.
+
+Question 20: Are there visible differences between the GO terms for this sample and the 25 m sample? Could there be any biological explanation for this?
+  
+  
+Selecting the bar chart representation of GO terms makes it easier to compare different data sets.
+\end{steps}
+
+\begin{steps}
+Return to the HOT station project page and open the taxonomy analysis results for all 4 of the samples, each in a new window.
+  
+Question 21: How does the taxonomic composition change at different ocean sampling depths? Are any trends in the data consistent with your answer to question 18?
+
+
+\end{steps}
+
+%-----------------------------------------------------------------------------------------
+\subsection{Part 2 - Analysing EMG data using STAMP}
+
+Whilst EMG does not currently support direct comparison of multiple samples, it is possible to download the underlying data for use with other visualisation and/or statistical analysis tools, such as STAMP (Statistical Analysis of Metagenomic Profiles: \url{http://kiwi.cs.dal.ca/Software/STAMP}. The Downloads tab for a given sample lists the files with the necessary data, although a slight amount of data wrangling is usually required to reformat files, etc.
+
+\begin{steps}
+We are going perform a detailed comparison of the GO slimmed biological process results for the samples at 25 m and 500 m using STAMP. To do this, open the HOT station, Central North Pacific Gyre, ALOH project page again. Select the sample HOT Station ALOHA, 25 m study and download the GO slim annotation (CSV) file from the download tab. Repeat this for the HOT Station ALOHA, 500 m study.
+\end{steps}
+
+You should now have the following 2 files in your downloads folder: HOT_Station_ALOHA,_25m_depth_GO_slim.csv
+HOT_Station_ALOHA,_500m_depth,_MG_GO_slim.csv.txt
+(don’t worry about the fact the file names are constructed slightly differently – this is an inconsistency on our web site that needs to be corrected!)
+
+\begin{steps}
+Drag or copy these files to your desktop, and then launch a terminal window, so that you can manipulate the files on the command line.
+  
+Navigate to the Desktop directory by typing ‘cd \textasciitilde{}/Desktop/’   Next, type ‘ls’ to make sure you can see the files, and take a look at their contents using the ‘less’ command.
+\end{steps}
+
+First we are going to wrangle data from the 25 m sample, using a mixture of ‘grep’ to pull out the lines containing the phrase ‘biological_process’ and ‘awk’ to split up and reorder the fields. 
+
+awk is a text-processing language that is useful for extracting or transforming documents and reformatting text. You can find out more about it here: \url{http://www.gnu.org/software/gawk/manual/gawk.html}
+
+\begin{steps}
+Enter the following command (all on one line):
+\begin{lstlisting}
+grep 'biological_process'  HOT_Station_ALOHA,_25m_depth_GO_slim.csv  | awk -F" '{print \$6 "\textbackslash{}t" \$4 "\textbackslash{}t" \$8 }'  >  biological_process_25m.txt
+
+\end{lstlisting}
+This should produce a new file called ‘biological_process_25m.txt’. Use ‘less’ to examine this file.
+
+Question 22: What are the differences between this file and the HOT_Station_ALOHA,_25m_depth_GO_slim.csv  file?
+
+\end{steps}
+
+Next, we are going to add the biological process data from the 500 m sample to this file.  Once again, will use ‘grep’ to pull out the relevant lines in the source file, ‘awk’ to process the lines and output the correct fields, and ‘paste’ to merge the data with the contents of the file we produced above.
+
+\begin{steps}
+Enter the following command (all on one line):
+\begin{lstlisting}
+grep 'biological_process' HOT_Station_ALOHA,_500m_depth,_MG_GO_slim.csv | awk -F\textbackslash{}" '{print \$8 }' | paste biological_process_25m.txt - > biological_process_25mvs500m.txt
+
+\end{lstlisting}
+This should create another new file, this time called ‘biological_process_25mvs500m.txt’. Use ‘less’ to examine this file.
+  
+Question 23: What is the difference between this file and the biological_process_25m.txt file?
+\end{steps}
+
+Finally, we need to add a simple header to the file, so that STAMP can process it properly. To do this, we could open the file and add the header manually, but here we will do it on the command line using the ‘printf’ command to write the header, ‘cat’ to print the contents of the file, and directing the output to a new file with the ‘>’ operator.
+
+\begin{steps}
+Enter the following command (all on one line):
+\begin{lstlisting}
+printf "Classification\textbackslash{}tSubclassification\textbackslash{}t25m\textbackslash{}t500m\textbackslash{}n" | cat - biological_process_25mvs500m.txt > biological_process_25mvs500m.spf
+\end{lstlisting}
+This command should have produced a third file called ‘biological_process_25mvs500m.spf’ that STAMP can read.
+\end{steps}
+
+\begin{steps}
+To launch STAMP, type STAMP in the terminal, hit the enter/return key, a graphical interface will then appear. Load the biological_process_25mvs500m.spf file into STAMP (you will need to set ‘Profile level’ to ‘Subclassification’ and select ‘Two samples’ from the tabs on the left hand side of the page to view the file once it is loaded). Try experimenting with different plot types and statistical tests.
+
+Question 24: Are there any observable differences in biological process GO terms between the 2 samples?
+\end{steps}
+
+For your convenience, three files containing the HOT Station GO term results for all 3 branches of the Gene Ontology (molecular function, biological process and cellular component) at each sample depth, and a corresponding metadata file have been pre-generated and formatted for use with STAMP. These are located in the /Desktop/InterproTutorial/ folder on the desktop (filenames: HOT_Station_ALOHA_bp.spf, HOT_Station_ALOHA_mf.spf, HOT_Station_ALOHA_cc.spf and HOT_Station_ALOHA_metadata.tsv). 
+
+\begin{steps}
+Try loading these files into STAMP, as you did with the previous file, and exploring the results. You can select different samples to compare (25, 75, 125 and 500 m) using the sample 1 and sample 2 drop down menus. You can now also use the Multiple Groups tab and explore some of its options.
+  
+Question 25: What trends can you identify in the molecular function, biological process and cellular component GO terms across the different sampling depths?
+\end{steps}
+%END: Practical
