@@ -73,7 +73,7 @@ The EBI Metagenomics resource (EMG) provides functional analysis of predicted co
 %-----------------------------------------------------------------------------------------
 \subsection{What are protein signatures?}
 
-Protein signatures are obtained by modelling the conservation of amino acids at specific positions within a group of related proteins (i.e., a protein family), or within the domains/sites shared by a group of proteins. InterPro’s different member databases use different computational methods to produce protein signatures, and they each have their own particular focus of interest: structural and/or functional domains, protein families, or protein features, such as active sites or binding sites (see Figure 1).
+Protein signatures are obtained by modelling the conservation of amino acids at specific positions within a group of related proteins (i.e., a protein family), or within the domains/sites shared by a group of proteins. InterPro's different member databases use different computational methods to produce protein signatures, and they each have their own particular focus of interest: structural and/or functional domains, protein families, or protein features, such as active sites or binding sites (see Figure 1).
 
 \subsection{Figures}
 
@@ -95,13 +95,13 @@ The Gene Ontology is made up of 3 structured controlled vocabularies that descri
 \begin{figure}[Figure 2]
 \centering
 \includegraphics[width=0.8\textwidth]{handout/GO.png}
-\caption{An example of GO terms organised into a hierarchy, with terms becoming less specific as the hierarchy is ascended (e.g., alpha-tubulin binding is a type of cytoskeletal binding, which is a type of protein binding). Note that a GO term can have more than one parent term. The Gene Ontology also allows for different types of relationships between terms (such as ‘has part of’ or ‘regulates’). The EMG analysis pipeline only uses the straightforward ‘is a’ relationships.}
+\caption{An example of GO terms organised into a hierarchy, with terms becoming less specific as the hierarchy is ascended (e.g., alpha-tubulin binding is a type of cytoskeletal binding, which is a type of protein binding). Note that a GO term can have more than one parent term. The Gene Ontology also allows for different types of relationships between terms (such as 'has part of' or 'regulates'). The EMG analysis pipeline only uses the straightforward 'is a' relationships.}
 \label{fig:GO}
 \end{figure}
 
 More information about the GO project can be found \url{http://www.geneontology.org/GO.doc.shtml}
 
-As part of the EMG analysis pipeline, GO terms for molecular function, biological process and cellular component are associated to pCDS in a sample via the InterPro2GO mapping service. This works as follows: InterPro entries are given GO terms by curators if the terms can be accurately applied to all of the proteins matching that entry. Sequences searched against InterPro are then associated with GO terms by virtue of the entries they match - a protein that matches one InterPro entry with the GO term ‘kinase activity’ and another InterPro entry with the GO term ‘zinc ion binding’ will be annotated with both GO terms.
+As part of the EMG analysis pipeline, GO terms for molecular function, biological process and cellular component are associated to pCDS in a sample via the InterPro2GO mapping service. This works as follows: InterPro entries are given GO terms by curators if the terms can be accurately applied to all of the proteins matching that entry. Sequences searched against InterPro are then associated with GO terms by virtue of the entries they match - a protein that matches one InterPro entry with the GO term 'kinase activity' and another InterPro entry with the GO term 'zinc ion binding' will be annotated with both GO terms.
 
 %-----------------------------------------------------------------------------------------
 \subsection{Finding functional information about samples on the EMG website}
@@ -129,11 +129,11 @@ Functional analysis of metagenomics data, as shown on the EMG website.
 \begin{figure}[Figure 5]
 \centering
 \includegraphics[width=0.8\textwidth]{handout/FA_GO.png}
-\caption{ The GO terms predicted for the sample are displayed. Different graphical representations are available, and can be selected by clicking on the ‘Switch view’ icons.}
+\caption{ The GO terms predicted for the sample are displayed. Different graphical representations are available, and can be selected by clicking on the 'Switch view' icons.}
 \label{fig:FA_GO}
 \end{figure}
 
-The Gene Ontology terms displayed graphically on the web site have been ‘slimmed’ with a special GO slim developed for metagenomic data sets. GO slims are cut-down versions of the Gene Ontology, containing a subset of the terms in the whole GO. They give a broad overview of the ontology content without the detail of the specific fine-grained terms.
+The Gene Ontology terms displayed graphically on the web site have been 'slimmed' with a special GO slim developed for metagenomic data sets. GO slims are cut-down versions of the Gene Ontology, containing a subset of the terms in the whole GO. They give a broad overview of the ontology content without the detail of the specific fine-grained terms.
 
 The full data sets used to generate both the InterPro and GO overview charts, along with a host of additional data (processed reads, pCDS, reads encoding 16S rRNAs, taxonomic analyses, etc) can be downloaded for further analysis by clicking the Download tab, found towards the top of the page (see Figure 6).
 
@@ -156,7 +156,7 @@ The full data sets used to generate both the InterPro and GO overview charts, al
 \begin{steps}
 Open the Metagenomics Portal homepage in a web browser \url{https://www.ebi.ac.uk/metagenomics/}.
 
-From the Projects list click the ‘Projects’ tab, or ‘View all projects’, find and click on HOT station, Central North Pacific Gyre, ALOH.
+From the Projects list click the 'Projects' tab, or 'View all projects', find and click on HOT station, Central North Pacific Gyre, ALOH.
 You should now have a Project overview page describing the project, related publications, and links to the samples that the project contains.
 \end{steps}
 
@@ -182,7 +182,7 @@ Question 4: What environmental ontology (ENVO) identifer and name has the sample
 \end{questions}
 
 \begin{steps}
-Click on the ‘Download’ tab. Right click the file labelled ‘Predicted CDS (FASTA)’ link, and save this file to your desktop. Find the file, and either double click on it to open it, or examine it using ‘less’ by typing the following commands in a terminal window:
+Click on the 'Download' tab. Right click the file labelled 'Predicted CDS (FASTA)' link, and save this file to your desktop. Find the file, and either double click on it to open it, or examine it using 'less' by typing the following commands in a terminal window:
 \begin{lstlisting}
 cd ~/Desktop
 less HOT_Station_ALOHA,_25m_depth_pCDS.faa
@@ -193,7 +193,7 @@ Have a look at one or two of the many sequences it contains.
 We will look at the analysis results for this entire batch of sequences, displayed on the EMG website, in a moment. First, we will attempt analyse just one of the predicted coding sequences using InterPro (the analysis results on the EMG website summarise these kind of results for tens or hundreds of thousands of sequences).
 
 \begin{steps}
-In a new tab or window, open your web browser and navigate to \url{http://www.ebi.ac.uk/interpro/}. Copy and paste the following sequence into the text box on the InterPro home page where it says ‘Analyse your sequence’:
+In a new tab or window, open your web browser and navigate to \url{http://www.ebi.ac.uk/interpro/}. Copy and paste the following sequence into the text box on the InterPro home page where it says 'Analyse your sequence':
 \begin{lstlisting}
 >SRR010898.122503_1_115_+
 ENNQEIKIIRNYINEFNLTGFIVGIPLDEKGQMTNQAI
@@ -311,17 +311,17 @@ Whilst EMG does not currently support direct comparison of multiple samples, it 
 We are going perform a detailed comparison of the GO slimmed biological process results for the samples at 25 m and 500 m using STAMP. To do this, open the HOT station, Central North Pacific Gyre, ALOH project page again. Select the sample HOT Station ALOHA, 25 m study and download the GO slim annotation (CSV) file from the download tab. Repeat this for the HOT Station ALOHA, 500 m study.
 \end{steps}
 
-You should now have the following 2 files in your downloads folder: HOT_Station_ALOHA,_25m_depth_GO_slim.csv
-HOT_Station_ALOHA,_500m_depth,_MG_GO_slim.csv.txt
-(don’t worry about the fact the file names are constructed slightly differently – this is an inconsistency on our web site that needs to be corrected!)
+You should now have the following 2 files in your downloads folder: HOT\_Station\_ALOHA,\_25m\_depth\_GO\_slim.csv
+HOT\_Station\_ALOHA,\_500m\_depth,\_MG\_GO\_slim.csv.txt
+(don't worry about the fact the file names are constructed slightly differently – this is an inconsistency on our web site that needs to be corrected!)
 
 \begin{steps}
 Drag or copy these files to your desktop, and then launch a terminal window, so that you can manipulate the files on the command line.
   
-Navigate to the Desktop directory by typing ‘cd \textasciitilde{}/Desktop/’   Next, type ‘ls’ to make sure you can see the files, and take a look at their contents using the ‘less’ command.
+Navigate to the Desktop directory by typing 'cd \textasciitilde{}/Desktop/'   Next, type 'ls' to make sure you can see the files, and take a look at their contents using the 'less' command.
 \end{steps}
 
-First we are going to wrangle data from the 25 m sample, using a mixture of ‘grep’ to pull out the lines containing the phrase ‘biological_process’ and ‘awk’ to split up and reorder the fields. 
+First we are going to wrangle data from the 25 m sample, using a mixture of 'grep' to pull out the lines containing the phrase 'biological\_process' and 'awk' to split up and reorder the fields. 
 
 awk is a text-processing language that is useful for extracting or transforming documents and reformatting text. You can find out more about it here: \url{http://www.gnu.org/software/gawk/manual/gawk.html}
 
@@ -331,13 +331,13 @@ Enter the following command (all on one line):
 grep 'biological_process'  HOT_Station_ALOHA,_25m_depth_GO_slim.csv  | awk -F" '{print \$6 "\textbackslash{}t" \$4 "\textbackslash{}t" \$8 }'  >  biological_process_25m.txt
 
 \end{lstlisting}
-This should produce a new file called ‘biological_process_25m.txt’. Use ‘less’ to examine this file.
+This should produce a new file called 'biological\_process\_25m.txt'. Use 'less' to examine this file.
 
-Question 22: What are the differences between this file and the HOT_Station_ALOHA,_25m_depth_GO_slim.csv  file?
+Question 22: What are the differences between this file and the HOT\_Station\_ALOHA,\_25m\_depth\_GO\_slim.csv  file?
 
 \end{steps}
 
-Next, we are going to add the biological process data from the 500 m sample to this file.  Once again, will use ‘grep’ to pull out the relevant lines in the source file, ‘awk’ to process the lines and output the correct fields, and ‘paste’ to merge the data with the contents of the file we produced above.
+Next, we are going to add the biological process data from the 500 m sample to this file.  Once again, will use 'grep' to pull out the relevant lines in the source file, 'awk' to process the lines and output the correct fields, and 'paste' to merge the data with the contents of the file we produced above.
 
 \begin{steps}
 Enter the following command (all on one line):
@@ -345,28 +345,28 @@ Enter the following command (all on one line):
 grep 'biological_process' HOT_Station_ALOHA,_500m_depth,_MG_GO_slim.csv | awk -F\textbackslash{}" '{print \$8 }' | paste biological_process_25m.txt - > biological_process_25mvs500m.txt
 
 \end{lstlisting}
-This should create another new file, this time called ‘biological_process_25mvs500m.txt’. Use ‘less’ to examine this file.
+This should create another new file, this time called 'biological\_process\_25mvs500m.txt'. Use 'less' to examine this file.
   
-Question 23: What is the difference between this file and the biological_process_25m.txt file?
+Question 23: What is the difference between this file and the biological\_process\_25m.txt file?
 \end{steps}
 
-Finally, we need to add a simple header to the file, so that STAMP can process it properly. To do this, we could open the file and add the header manually, but here we will do it on the command line using the ‘printf’ command to write the header, ‘cat’ to print the contents of the file, and directing the output to a new file with the ‘>’ operator.
+Finally, we need to add a simple header to the file, so that STAMP can process it properly. To do this, we could open the file and add the header manually, but here we will do it on the command line using the 'printf' command to write the header, 'cat' to print the contents of the file, and directing the output to a new file with the '>' operator.
 
 \begin{steps}
 Enter the following command (all on one line):
 \begin{lstlisting}
 printf "Classification\textbackslash{}tSubclassification\textbackslash{}t25m\textbackslash{}t500m\textbackslash{}n" | cat - biological_process_25mvs500m.txt > biological_process_25mvs500m.spf
 \end{lstlisting}
-This command should have produced a third file called ‘biological_process_25mvs500m.spf’ that STAMP can read.
+This command should have produced a third file called 'biological\_process\_25mvs500m.spf' that STAMP can read.
 \end{steps}
 
 \begin{steps}
-To launch STAMP, type STAMP in the terminal, hit the enter/return key, a graphical interface will then appear. Load the biological_process_25mvs500m.spf file into STAMP (you will need to set ‘Profile level’ to ‘Subclassification’ and select ‘Two samples’ from the tabs on the left hand side of the page to view the file once it is loaded). Try experimenting with different plot types and statistical tests.
+To launch STAMP, type STAMP in the terminal, hit the enter/return key, a graphical interface will then appear. Load the biological\_process\_25mvs500m.spf file into STAMP (you will need to set 'Profile level' to 'Subclassification' and select 'Two samples' from the tabs on the left hand side of the page to view the file once it is loaded). Try experimenting with different plot types and statistical tests.
 
 Question 24: Are there any observable differences in biological process GO terms between the 2 samples?
 \end{steps}
 
-For your convenience, three files containing the HOT Station GO term results for all 3 branches of the Gene Ontology (molecular function, biological process and cellular component) at each sample depth, and a corresponding metadata file have been pre-generated and formatted for use with STAMP. These are located in the /Desktop/InterproTutorial/ folder on the desktop (filenames: HOT_Station_ALOHA_bp.spf, HOT_Station_ALOHA_mf.spf, HOT_Station_ALOHA_cc.spf and HOT_Station_ALOHA_metadata.tsv). 
+For your convenience, three files containing the HOT Station GO term results for all 3 branches of the Gene Ontology (molecular function, biological process and cellular component) at each sample depth, and a corresponding metadata file have been pre-generated and formatted for use with STAMP. These are located in the /Desktop/InterproTutorial/ folder on the desktop (filenames: HOT\_Station\_ALOHA\_bp.spf, HOT\_Station\_ALOHA\_mf.spf, HOT\_Station\_ALOHA\_cc.spf and HOT\_Station\_ALOHA\_metadata.tsv). 
 
 \begin{steps}
 Try loading these files into STAMP, as you did with the previous file, and exploring the results. You can select different samples to compare (25, 75, 125 and 500 m) using the sample 1 and sample 2 drop down menus. You can now also use the Multiple Groups tab and explore some of its options.
